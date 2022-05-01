@@ -1,5 +1,5 @@
 
-from features.nft_event.controller import on_client_state_changed_nft_event
+from features.boxes.controller import on_client_state_changed_boxes
 import json
 import socketio
 import eventlet
@@ -23,7 +23,7 @@ def meta(path):
 
 @sio.on('client-state-changed')
 def on_event(sid, data):
-    on_client_state_changed_nft_event(sio, sid, json.loads(data))
+    on_client_state_changed_boxes(sio, sid, json.loads(data))
 
 
 if __name__ == '__main__':
