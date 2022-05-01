@@ -4,3 +4,7 @@ project: metabomb-nft-event
 image: app
 dockerfile: Dockerfile
 context: .
+---
+image: schedule
+dockerfile: Dockerfile.schedule
+context: .
