@@ -1,7 +1,6 @@
 import json
 import time
 
-import numpy as np
 from sdk import cache
 
 start_timestamp = 1651323600
