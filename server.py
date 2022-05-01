@@ -1,5 +1,6 @@
 
 from features.boxes.controller import on_client_state_changed_boxes
+from features.stats.controller import on_client_state_changed_stats
 import json
 import socketio
 import eventlet
@@ -24,6 +25,7 @@ def meta(path):
 @sio.on('client-state-changed')
 def on_event(sid, data):
     on_client_state_changed_boxes(sio, sid, json.loads(data))
+    on_client_state_changed_stats(sio, sid, json.loads(data))
 
 
 if __name__ == '__main__':

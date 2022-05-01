@@ -31,7 +31,7 @@ def title_row():
             ),
             Col(
                 children=[
-                    Span("Initial NFT Offering Event", "font-medium-3")
+                    Span("NFT Event Boxes", "font-medium-3")
                 ]
             )
         ],
@@ -42,8 +42,8 @@ def title_row():
 def table_row():
     return Datatable(
         class_name="mt-2",
-        data=documents('nft-event'),
-        busy_when=is_busy(collection('nft-event')),
+        data=documents('event-boxes'),
+        busy_when=is_busy(collection('event-boxes')),
         pagination=False,
         show_export=False,
         columns=[

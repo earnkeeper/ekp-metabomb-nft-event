@@ -4,7 +4,7 @@
   "name": "NFT Event",
   "github": "https://github.com/earnkeeper/ekp-metabomb-nft-event",
   "image": "/static/market.jpg",
-  "mainPage": "boxes",
+  "mainPage": "event-boxes",
   "description": "The Metabomb Initial NFT Offering is Live! Get all the details to make the right purchase here.",
   "features": ["Profit Calculator"]
 }

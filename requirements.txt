@@ -4,3 +4,6 @@ requests
 Flask
 python-engineio
 flask-cors
+python-decouple
+moment
+redis

@@ -11,12 +11,47 @@ def cleanNullTerms(d):
     return clean
 
 
+def Fragment(children, class_name=None):
+    return {
+        "_type": "Fragment",
+        "props": cleanNullTerms({
+            "className": class_name,
+            "children": children,
+        })
+    }
+
+
 def Span(content, class_name=None):
     return {
         "_type": "Span",
         "props": cleanNullTerms({
             "className": class_name,
             "content": content,
+        })
+    }
+
+
+def Chart(
+        title,
+        type,
+        series,
+        data=None,
+        height=400,
+        busy_when=None,
+        options=None,
+        class_name=None
+):
+    return {
+        "_type": "Chart",
+        "props": cleanNullTerms({
+            "className": class_name,
+            "title": title,
+            "type": type,
+            "height": height,
+            "busyWhen": busy_when,
+            "data": data,
+            "series": series,
+            "options": options,
         })
     }
 
@@ -220,5 +255,33 @@ def switch_case(on, cases):
 def commify(value):
     return {
         "method": "commify",
+        "params": [value]
+    }
+
+
+def json_array(values):
+    return {
+        "method": "jsonArray",
+        "params": [values]
+    }
+
+
+def ekp_map(source, projection):
+    return {
+        "method": "map",
+        "params": [source, projection]
+    }
+
+
+def sort_by(source, comparator):
+    return {
+        "method": "sortBy",
+        "params": [source, comparator]
+    }
+
+
+def format_percent(value):
+    return {
+        "method": "formatPercent",
         "params": [value]
     }
