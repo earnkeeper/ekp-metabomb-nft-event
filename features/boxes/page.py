@@ -4,7 +4,7 @@ from sdk.components import (Badge, Button, Col, Column, Container, Datatable,
                             format_template, is_busy, switch_case)
 
 
-def page():
+def page(collection_name):
     return Container(
         children=[
             title_row(),
@@ -17,7 +17,7 @@ def page():
                 class_name="d-block",
                 content="Check your total costs below before buying!"
             ),
-            table_row()
+            table_row(collection_name)
         ]
     )
 
@@ -39,11 +39,11 @@ def title_row():
     )
 
 
-def table_row():
+def table_row(collection_name):
     return Datatable(
         class_name="mt-2",
-        data=documents('event-boxes'),
-        busy_when=is_busy(collection('event-boxes')),
+        data=documents(collection_name),
+        busy_when=is_busy(collection(collection_name)),
         pagination=False,
         show_export=False,
         columns=[

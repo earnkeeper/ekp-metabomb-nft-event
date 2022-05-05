@@ -1,25 +1,39 @@
 from features.stats.data.chart_documents import chart_documents
 from features.stats.data.uptake_documents import uptake_documents
 from features.stats.page import page
-from sdk.sockets import emit_busy, emit_documents, emit_done, emit_menu, emit_page
 
-path = "event-stats"
+collection_name = "event-boxes"
 chart_collection = "nft-event-chart"
 uptake_collection = "nft-event-uptake"
 
-def on_client_state_changed_stats(sio, sid, event):
-    emit_busy(sio, sid, chart_collection)
-    emit_busy(sio, sid, uptake_collection)
-    
-    emit_menu(sio, sid, path, 'NFT Event Stats', path, 'sunset')
-    
-    chart_docs = chart_documents()
-    emit_documents(sio, sid, chart_collection, chart_docs)
 
-    uptake_docs = uptake_documents()
-    emit_documents(sio, sid, uptake_collection, uptake_docs)
+class StatsController:
+    def __init__(self):
+        self.path = 'event-stats'
 
-    emit_page(sio, sid, path, page(chart_collection, uptake_collection))
+    def on_connect(self, sid):
+        self.client_service.emit_menu(
+            sid,
+            'sunset',
+            'NFT Event Stats',
+            self.path
+        )
+        self.client_service.emit_page(
+            sid,
+            self.path,
+            page(chart_collection, uptake_collection)
+        )
 
-    emit_done(sio, sid, chart_collection)
-    emit_done(sio, sid, uptake_collection)
+    def on_client_state_changed(self, sid, event):
+
+        self.client_service.emit_busy(sid, chart_collection)
+        self.client_service.emit_busy(sid, uptake_collection)
+
+        chart_docs = chart_documents()
+        self.client_service.emit_documents(sid, chart_collection, chart_docs)
+
+        uptake_docs = uptake_documents()
+        self.client_service.emit_documents(sid, uptake_collection, uptake_docs)
+
+        self.client_service.emit_done(sid, chart_collection)
+        self.client_service.emit_done(sid, uptake_collection)
