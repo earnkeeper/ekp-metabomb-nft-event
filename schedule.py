@@ -48,9 +48,9 @@ def get_buys(address):
     return buys
 
 
-cache.set("common_buys", json.dumps(get_buys('0x1f36bef063ee6fcefeca070159d51a3b36bc68d6')))
-cache.set("premium_buys", json.dumps(get_buys('0x2076626437c3bb9273998a5e4f96438abe467f1c')))
-cache.set("ultra_buys", json.dumps(get_buys('0x9341faed0b86208c64ae6f9d62031b1f8a203240')))
+cache.set("common_buys", get_buys('0x1f36bef063ee6fcefeca070159d51a3b36bc68d6'))
+cache.set("premium_buys", get_buys('0x2076626437c3bb9273998a5e4f96438abe467f1c'))
+cache.set("ultra_buys", get_buys('0x9341faed0b86208c64ae6f9d62031b1f8a203240'))
 
 
 

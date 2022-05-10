@@ -1,3 +1,5 @@
+import json
+
 import redis
 from decouple import config
 
@@ -8,9 +10,14 @@ r = redis.Redis(
     password=config("REDIS_PASSWORD", default=None)
 )
 
-
 def get(key):
-    return r.get(key);
+    value = r.get(key)
+    if (value is None):
+        return None
+    return json.loads(value)
+
 
 def set(key, value):
-    return r.set(key, value);
+    if (set is not None):
+        return r.set(key, json.dumps(value))
+    return r.set(key, value)

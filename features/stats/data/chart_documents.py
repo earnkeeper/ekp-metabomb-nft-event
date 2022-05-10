@@ -1,6 +1,4 @@
-import json
 import time
-
 from sdk import cache
 
 start_timestamp = 1651323600
@@ -10,9 +8,12 @@ def chart_documents():
     now = time.time()
     step = int((now - start_timestamp) / 100)
 
-    common_buys = json.loads(cache.get("common_buys"))
-    premium_buys = json.loads(cache.get("premium_buys"))
-    ultra_buys = json.loads(cache.get("ultra_buys"))
+    common_buys = cache.get("common_buys")
+    if common_buys is None:
+        return []
+
+    premium_buys = cache.get("premium_buys")
+    ultra_buys = cache.get("ultra_buys")
 
     buys = {}
 

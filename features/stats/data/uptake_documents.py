@@ -16,8 +16,11 @@ def uptake_documents():
 
     for type in types:
 
-        buys = json.loads(cache.get(f"{type}_buys"))
+        buys = cache.get(f"{type}_buys")
 
+        if buys is None:
+            return []
+        
         for buy in buys:
             all_buys.append({
                 "address": buy["address"],
